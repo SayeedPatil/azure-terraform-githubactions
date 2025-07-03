@@ -1,20 +1,9 @@
 variable "resource_group_name" {
-  type = string
+  type        = string
+  description = "Name of the Azure resource group"
 }
+
 variable "location" {
-  type = string
+  type        = string
+  description = "Azure region for the resource group"
 }
-
-variable "subscription_id" {
-  type = string
-}
-variable "client_id" {
-  type = string
-}
-variable "client_secret" {
-  type = string
-}
-variable "tenant_id" {
-  type = string
-}
-
