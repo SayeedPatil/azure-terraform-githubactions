@@ -1,10 +1,11 @@
-name: Destroy Azure Resources using Terraform
+name: DESTROY USING Terraform
 
 on:
   workflow_dispatch:
 
 jobs:
   terraform:
+    name: Terraform Destroy
     runs-on: ubuntu-latest
 
     env:
@@ -15,7 +16,8 @@ jobs:
       ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Clean Terraform cache
         run: rm -rf .terraform
@@ -30,8 +32,8 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Terraform Init (Reconfigure)
+        run: terraform init -reconfigure
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve -var-file="terraform.tfvars"
