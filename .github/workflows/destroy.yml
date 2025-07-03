@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Clean Terraform cache
+        run: rm -rf .terraform
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
